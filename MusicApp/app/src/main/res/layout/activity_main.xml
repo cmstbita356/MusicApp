@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/txv_hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chào Buổi Tối"
+            android:textSize="24dp"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nghệ Sĩ" />
+
+                <GridView
+                    android:id="@+id/GV_nghesi"
+                    android:layout_width="150dp"
+                    android:layout_height="75dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PlayList" />
+
+                <GridView
+                    android:id="@+id/GV_playlist"
+                    android:layout_width="150dp"
+                    android:layout_height="75dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_listplaymusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thư Viện Bài Hát"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/VP_ListPlayMusic"
+            android:layout_width="378dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="30dp">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <TextView
+            android:id="@+id/tv_listLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhạc Nước Ngoài"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/VP_listLiked"
+            android:layout_width="378dp"
+            android:layout_height="118dp"
+            android:layout_marginTop="30dp">
+
+        </androidx.viewpager.widget.ViewPager>
+        <TextView
+            android:id="@+id/tv_listrecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhạc Việt Nam"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/VP_listRecent"
+            android:layout_width="376dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+        </androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        style="@style/CardView.Light"
+        android:background="#C8B9D1">
+        <TextView
+            android:id="@+id/txv_namesong"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:text="Tên Bài Hát"/>
+        <ImageButton
+            android:id="@+id/bt_like"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_like"
+            android:scaleType="fitStart"/>
+        <ImageButton
+            android:id="@+id/bt_pause"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_pause"
+            android:scaleType="fitXY"/>
+        <ImageButton
+            android:id="@+id/bt_next"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_next"
+            android:scaleType="fitXY"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="horizontal"
+        android:background="@color/gray">
+
+
+        <ImageButton
+            android:id="@+id/iB_home"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/homee"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"/>
+
+
+        <ImageButton
+            android:id="@+id/iB_library"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/libraryy"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+
+        <ImageButton
+            android:id="@+id/iB_find"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/findd"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+
+        <ImageButton
+            android:id="@+id/iB_settings"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/settingss"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+    </LinearLayout>
+</LinearLayout>

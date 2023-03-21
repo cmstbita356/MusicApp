@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PlayActivity"
+    android:orientation="vertical">
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/musiccolor">
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/musiccolor"
+            android:text="Back"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txv_namesong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên Bài Hát"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/txv_singlesong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ca sĩ" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/settings" />
+
+    </Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="#7194DA"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imV_song"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <SeekBar
+            android:id="@+id/seekBar_song"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bt_previous"
+                android:layout_marginLeft="25dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_previous" />
+
+            <ImageButton
+                android:id="@+id/bt_previoustime"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_previoustime" />
+
+            <ImageButton
+                android:id="@+id/bt_pause_play"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_play" />
+
+            <ImageButton
+                android:id="@+id/bt_nexttime"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_nexttime" />
+
+            <ImageButton
+                android:id="@+id/bt_next"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_next" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/bt_like"
+                android:layout_marginLeft="25dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_like" />
+
+            <ImageButton
+                android:id="@+id/bt_loop"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_loop" />
+
+            <ImageButton
+                android:id="@+id/bt_addli"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#7194DA"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_add" />
+
+            <Button
+                android:id="@+id/bt_listsong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#7194DA"
+                android:text="Danh Sách Bài Hát" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.391"
+        android:text="Lyric">
+    </TextView>
+</LinearLayout>
