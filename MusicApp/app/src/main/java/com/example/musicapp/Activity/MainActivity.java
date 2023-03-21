@@ -10,6 +10,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.musicapp.Model.Song;
+import com.example.musicapp.Model.SongData;
 import com.example.musicapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,10 +23,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SongData.SongDataCallback {
     MediaPlayer mediaPlayer;
     int countIndex = 0;
-    ArrayList<String> songList = new ArrayList<>();
+    ArrayList<Song> songList = new ArrayList<>();
+    String s = "không có";
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,35 +36,22 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setVolume(1f, 1f);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("BaiHat");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
-                    String link = snapshot.child("Link").getValue(String.class);
-                    songList.add(link);
-                }
-                playSong(songList.get(0));
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        int nextIndex = (countIndex + 1) % songList.size();
-                        playSong(songList.get(nextIndex));
-                        countIndex = nextIndex;
-                    }
-                });
-            }
+        //SongData.getSongById(1, this);
+        //SongData.getAllSongs(this);
+        SongData.getLanguageSong("Viet", this);
 
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("Firebase Link", "Lỗi khi đọc dữ liệu từ Firebase.", databaseError.toException());
+            public void onCompletion(MediaPlayer mp) {
+                int nextIndex = (countIndex + 1) % songList.size();
+                playSong(songList.get(nextIndex).getLink());
+                countIndex = nextIndex;
             }
         });
 
 
     }
+
     private void playSong(String songLink) {
         // Initialize the media player and start playing the song
         try {
@@ -71,5 +62,31 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onAllSongDataReceived(ArrayList<Song> songs) {
+        mediaPlayer.stop();
+        songList = songs;
+        playSong(songList.get(1).getLink());
+    }
+
+    @Override
+    public void onSongDataReceived(Song song) {
+        mediaPlayer.stop();
+        playSong(song.getLink());
+    }
+
+    @Override
+    public void onLanguageSongDataReceived(ArrayList<Song> songs) {
+        mediaPlayer.stop();
+
+        playSong(songs.get(0).getLink());
+
+    }
+
+    @Override
+    public void onSongDataError(String message) {
+        // Handle error
     }
 }
