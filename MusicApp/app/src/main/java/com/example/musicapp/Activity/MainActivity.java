@@ -1,27 +1,19 @@
 package com.example.musicapp.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.example.musicapp.Adapter.HomeAdapter;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
 import com.example.musicapp.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements SongData.SongDataCallback {
     MediaPlayer mediaPlayer;
@@ -36,8 +28,10 @@ public class MainActivity extends AppCompatActivity implements SongData.SongData
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setVolume(1f, 1f);
 
+
         //SongData.getSongById(1, this);
-        //SongData.getAllSongs(this);
+        SongData.getAllSongs(this);
+        SongData.getLanguageSong("Anh", this);
         SongData.getLanguageSong("Viet", this);
 
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -66,9 +60,20 @@ public class MainActivity extends AppCompatActivity implements SongData.SongData
 
     @Override
     public void onAllSongDataReceived(ArrayList<Song> songs) {
-        mediaPlayer.stop();
         songList = songs;
-        playSong(songList.get(1).getLink());
+        HomeAdapter adapter = new HomeAdapter(songs, this);
+
+        RecyclerView recyclerView_TatCa = findViewById(R.id.recyclerView_TatCa);
+        recyclerView_TatCa.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView_TatCa.setAdapter(adapter);
+
+        RecyclerView recyclerView_NuocNgoai = findViewById(R.id.recyclerView_NuocNgoai);
+        recyclerView_NuocNgoai.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView_NuocNgoai.setAdapter(adapter);
+
+        RecyclerView recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
+        recyclerView_VietNam.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView_VietNam.setAdapter(adapter);
     }
 
     @Override
@@ -79,9 +84,7 @@ public class MainActivity extends AppCompatActivity implements SongData.SongData
 
     @Override
     public void onLanguageSongDataReceived(ArrayList<Song> songs) {
-        mediaPlayer.stop();
 
-        playSong(songs.get(0).getLink());
 
     }
 

@@ -53,7 +53,7 @@ public class SongData {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("Id").getValue(Integer.class) == id)
+                            if(snapshot.child("Id").getValue(Integer.class).equals(id))
                             {
                                 callback.onSongDataReceived(snapshot.getValue(Song.class));
                                 return;

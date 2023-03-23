@@ -95,7 +95,7 @@
                 android:src="@drawable/ic_previoustime" />
 
             <ImageButton
-                android:id="@+id/bt_pause_play"
+                android:id="@+id/bt_play"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="#7194DA"
