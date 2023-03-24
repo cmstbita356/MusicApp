@@ -42,6 +42,8 @@ public class PlayActivity extends AppCompatActivity {
     SeekBar seekBar_song;
     RecyclerView recyclerView;
     ImageButton bt_repeat;
+    TextView textView_name;
+    TextView textView_singer;
 
     Song song;
     ArrayList<Song> ListSong;
@@ -74,6 +76,9 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 song = SongData.getSongById(id, dataSnapshot);
+
+                textView_name.setText(song.getTen());
+                textView_singer.setText(song.getCaSi());
 
                 ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
                 PlayAdapter adapter = new PlayAdapter(ListSong, context, mediaPlayer);
@@ -186,6 +191,8 @@ public class PlayActivity extends AppCompatActivity {
         bt_previoustime = findViewById(R.id.bt_previoustime);
         recyclerView = findViewById(R.id.recyclerView);
         bt_repeat = findViewById(R.id.bt_repeat);
+        textView_singer = findViewById(R.id.textView_singer);
+        textView_name = findViewById(R.id.textView_name);
     }
     private Runnable updateSeekBarTime = new Runnable() {
         public void run() {

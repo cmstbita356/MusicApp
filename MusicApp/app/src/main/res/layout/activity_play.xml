@@ -27,14 +27,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txv_namesong"
+                android:id="@+id/textView_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tên Bài Hát"
                 android:textSize="24dp" />
 
             <TextView
-                android:id="@+id/txv_singlesong"
+                android:id="@+id/textView_singer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ca sĩ" />
