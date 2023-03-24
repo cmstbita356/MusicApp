@@ -51,7 +51,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:background="#7194DA"
         android:orientation="vertical">
 
@@ -59,7 +59,7 @@
         <ImageView
             android:id="@+id/imV_song"
             android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
             tools:srcCompat="@tools:sample/avatars" />
@@ -121,11 +121,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/bt_like"
-                android:layout_marginLeft="25dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:backgroundTint="#7194DA"
@@ -133,7 +134,7 @@
                 android:src="@drawable/ic_like" />
 
             <ImageButton
-                android:id="@+id/bt_loop"
+                android:id="@+id/bt_repeat"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:backgroundTint="#7194DA"
@@ -148,24 +149,13 @@
                 android:scaleType="fitStart"
                 android:src="@drawable/ic_add" />
 
-            <Button
-                android:id="@+id/bt_listsong"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#7194DA"
-                android:text="Danh Sách Bài Hát" />
         </LinearLayout>
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="350dp"
-        android:layout_height="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.391"
-        android:text="Lyric">
-    </TextView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 </LinearLayout>

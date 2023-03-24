@@ -14,41 +14,19 @@
         android:ems="10"
         android:textSize="26dp"
         android:inputType="textPersonName"
-        android:text="Nhấn để tìm kiếm..."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="Nhấp để tìm kiếm ..."/>
 
     <Button
-        android:id="@+id/bt_historyFind"
+        android:id="@+id/bt_find"
         android:layout_width="371dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:text="Lịch Sử Tìm Kiếm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_find" />
+        android:text="Tìm kiếm"/>
 
-    <GridView
-        android:id="@+id/GV_Find"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_find"
         android:layout_width="372dp"
-        android:layout_height="434dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_historyFind"
-        app:layout_constraintVertical_bias="0.306" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Kết quả tìm kiếm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_historyFind" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

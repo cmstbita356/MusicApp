@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhạc Tiếng Anh"
+                    android:textSize="30sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_Anh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhạc Việt Nam"
+                    android:textSize="30sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_VietNam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhạc Nhật"
+                    android:textSize="30sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_Nhat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhạc Hàn"
+                    android:textSize="30sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_Han"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhạc Khác"
+                    android:textSize="30sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_Khac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#C8B9D1">
+        <TextView
+            android:id="@+id/txv_namesong"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:text="Tên Bài Hát"/>
+        <ImageButton
+            android:id="@+id/bt_like"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_like"
+            android:scaleType="fitStart"/>
+        <ImageButton
+            android:id="@+id/bt_pause"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_pause"
+            android:scaleType="fitXY"/>
+        <ImageButton
+            android:id="@+id/bt_next"
+            android:background="#C8B9D1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_next"
+            android:scaleType="fitXY"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="horizontal"
+        android:background="@color/gray">
+
+
+        <ImageButton
+            android:id="@+id/iB_home"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/homee"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"/>
+
+
+        <ImageButton
+            android:id="@+id/iB_library"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/libraryy"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+
+        <ImageButton
+            android:id="@+id/iB_find"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/findd"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+
+        <ImageButton
+            android:id="@+id/iB_settings"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:src="@drawable/settingss"
+            android:scaleType="fitXY"
+            android:backgroundTint="@color/gray"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="25dp"/>
+    </LinearLayout>
+</LinearLayout>

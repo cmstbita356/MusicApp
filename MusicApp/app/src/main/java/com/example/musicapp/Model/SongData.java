@@ -1,6 +1,7 @@
 package com.example.musicapp.Model;
 
 import android.media.MediaPlayer;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,99 +15,44 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SongData {
-    public static void getAllSongs(final SongDataCallback callback) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                final ArrayList<Song> songs = new ArrayList<>();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("BaiHat");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Song song = snapshot.getValue(Song.class);
-                            songs.add(song);
-                        }
-                        callback.onAllSongDataReceived(songs);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("Firebase Link", "Lỗi khi đọc dữ liệu từ Firebase.", databaseError.toException());
-                        callback.onSongDataError(databaseError.getMessage());
-                    }
-                });
-            }
-        });
+    public static ArrayList<Song> getAllSong(DataSnapshot dataSnapshot) {
+        ArrayList<Song> songList = new ArrayList<>();
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            Song song = snapshot.getValue(Song.class);
+            songList.add(song);
+        }
+        return songList;
     }
-    public static void getSongById(int id, final SongDataCallback callback)
+
+    public static Song getSongById(int id, DataSnapshot dataSnapshot) {
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            if (snapshot.child("Id").getValue(Integer.class).equals(id)) {
+                return snapshot.getValue(Song.class);
+            }
+        }
+        return null;
+    }
+    public static ArrayList<Song> getSongByName(String name, DataSnapshot dataSnapshot)
     {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("BaiHat");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("Id").getValue(Integer.class).equals(id))
-                            {
-                                callback.onSongDataReceived(snapshot.getValue(Song.class));
-                                return;
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("Firebase Link", "Lỗi khi đọc dữ liệu từ Firebase.", databaseError.toException());
-                        callback.onSongDataError(databaseError.getMessage());
-                    }
-                });
+        ArrayList<Song> songList = new ArrayList<>();
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            if(snapshot.child("Ten").getValue(String.class).contains(name))
+            {
+                songList.add(snapshot.getValue(Song.class));
             }
-        });
+        }
+        return songList;
     }
-    public static void getLanguageSong(String language, final SongDataCallback callback)
+    public static ArrayList<Song> getSongByLanguage(String language, DataSnapshot dataSnapshot)
     {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<Song> songs = new ArrayList<>();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("BaiHat");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("NgonNgu").getValue(String.class).equals(language))
-                            {
-                                songs.add(snapshot.getValue(Song.class));
-                            }
-                        }
-                        callback.onLanguageSongDataReceived(songs);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("Firebase Link", "Lỗi khi đọc dữ liệu từ Firebase.", databaseError.toException());
-                        callback.onSongDataError(databaseError.getMessage());
-                    }
-                });
+        ArrayList<Song> songList = new ArrayList<>();
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            if(snapshot.child("NgonNgu").getValue(String.class).equals(language))
+            {
+                songList.add(snapshot.getValue(Song.class));
             }
-        });
-    }
-
-    public interface SongDataCallback {
-        void onAllSongDataReceived(ArrayList<Song> songs);
-        void onSongDataReceived(Song song);
-        void onLanguageSongDataReceived(ArrayList<Song> songs);
-        void onSongDataError(String message);
+        }
+        return songList;
     }
 }
 

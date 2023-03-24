@@ -10,6 +10,7 @@ public class Song {
     public Song() {
 
     }
+
     public Song(int id, String ten, String caSi, String hinh, String link, String ngonNgu) {
         Id = id;
         Ten = ten;
