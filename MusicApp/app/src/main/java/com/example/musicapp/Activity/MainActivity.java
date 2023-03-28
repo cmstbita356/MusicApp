@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.musicapp.Adapter.HomeAdapter;
@@ -28,13 +29,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     Context context = this;
+    Button button_test;
+    Button button_submit;
+    EditText editText_taikhoan;
+    EditText editText_matkhau;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_test);
+        init();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, HomeActivity.class);
@@ -43,6 +48,41 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-    }
 
+        FirebaseHelper.getData("NguoiDung", new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                button_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String taikhoan = editText_taikhoan.getText().toString();
+                        String matkhau = editText_matkhau.getText().toString();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        {
+                            if(snapshot.child("TaiKhoan").getValue(String.class).equals(taikhoan) && snapshot.child("MatKhau").getValue(String.class).equals(matkhau))
+                            {
+                                Intent intent = new Intent(context, HomeActivity.class);
+                                int id = snapshot.child("Id").getValue(Integer.class);
+                                intent.putExtra("id_user", id);
+                                startActivity(intent);
+                            }
+
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void init()
+    {
+        button_test = findViewById(R.id.button_test);
+        button_submit = findViewById(R.id.button_submit);
+        editText_taikhoan = findViewById(R.id.editText_taikhoan);
+        editText_matkhau = findViewById(R.id.editText_matkhau);
+    }
 }
