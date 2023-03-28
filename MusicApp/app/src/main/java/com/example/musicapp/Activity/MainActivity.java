@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity{
     Context context = this;
     Button button_test;
     Button button_submit;
+    Button button_dangky;
     EditText editText_taikhoan;
     EditText editText_matkhau;
     @Override
@@ -48,7 +49,13 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
+        button_dangky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         FirebaseHelper.getData("NguoiDung", new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,5 +91,6 @@ public class MainActivity extends AppCompatActivity{
         button_submit = findViewById(R.id.button_submit);
         editText_taikhoan = findViewById(R.id.editText_taikhoan);
         editText_matkhau = findViewById(R.id.editText_matkhau);
+        button_dangky = findViewById(R.id.button_dangky);
     }
 }

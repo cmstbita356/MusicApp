@@ -15,4 +15,24 @@ public class UserData {
         }
         return null;
     }
+    public static boolean CheckExisted(DataSnapshot dataSnapshot, String username)
+    {
+        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+        {
+            if(snapshot.child("TaiKhoan").getValue(String.class).equals(username))
+            {
+                return  false;
+            }
+        }
+        return true;
+    }
+    public static int getMaxId(DataSnapshot dataSnapshot)
+    {
+        int maxid = 0;
+        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+        {
+            maxid = snapshot.child("Id").getValue(Integer.class);
+        }
+        return maxid;
+    }
 }
