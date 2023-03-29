@@ -15,10 +15,6 @@ public class FirebaseHelper {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.addListenerForSingleValueEvent(listener);
     }
-    public static void getData(String path, ValueEventListener listener) {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(path);
-        mDatabase.addListenerForSingleValueEvent(listener);
-    }
     public static void addData(String path, String key, Map<String, Object> value)
     {
         DatabaseReference parentNode = FirebaseDatabase.getInstance().getReference(path);

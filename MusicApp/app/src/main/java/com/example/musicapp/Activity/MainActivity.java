@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-        FirebaseHelper.getData("NguoiDung", new ValueEventListener() {
+        FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 button_submit.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
                     public void onClick(View v) {
                         String taikhoan = editText_taikhoan.getText().toString();
                         String matkhau = editText_matkhau.getText().toString();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
                         {
                             if(snapshot.child("TaiKhoan").getValue(String.class).equals(taikhoan) && snapshot.child("MatKhau").getValue(String.class).equals(matkhau))
                             {

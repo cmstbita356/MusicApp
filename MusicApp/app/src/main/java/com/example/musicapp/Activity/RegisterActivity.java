@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         init();
 
 
-        FirebaseHelper.getData("NguoiDung", new ValueEventListener() {
+        FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 button_submit.setOnClickListener(new View.OnClickListener() {

@@ -72,7 +72,7 @@ public class PlayActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        FirebaseHelper.getData("BaiHat", new ValueEventListener() {
+        FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 song = SongData.getSongById(id, dataSnapshot);

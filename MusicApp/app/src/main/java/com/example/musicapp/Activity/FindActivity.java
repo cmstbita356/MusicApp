@@ -34,7 +34,7 @@ public class FindActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find);
         init();
 
-        FirebaseHelper.getData("BaiHat", new ValueEventListener() {
+        FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

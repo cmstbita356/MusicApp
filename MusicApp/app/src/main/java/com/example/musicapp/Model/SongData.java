@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 public class SongData {
     public static ArrayList<Song> getAllSong(DataSnapshot dataSnapshot) {
         ArrayList<Song> songList = new ArrayList<>();
-        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+        for (DataSnapshot snapshot : dataSnapshot.child("BaiHat").getChildren()) {
             Song song = snapshot.getValue(Song.class);
             songList.add(song);
         }
@@ -25,7 +25,7 @@ public class SongData {
     }
 
     public static Song getSongById(int id, DataSnapshot dataSnapshot) {
-        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+        for (DataSnapshot snapshot : dataSnapshot.child("BaiHat").getChildren()) {
             if (snapshot.child("Id").getValue(Integer.class).equals(id)) {
                 return snapshot.getValue(Song.class);
             }
@@ -35,7 +35,7 @@ public class SongData {
     public static ArrayList<Song> getSongByName(String name, DataSnapshot dataSnapshot)
     {
         ArrayList<Song> songList = new ArrayList<>();
-        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+        for (DataSnapshot snapshot : dataSnapshot.child("BaiHat").getChildren()) {
             if(snapshot.child("Ten").getValue(String.class).contains(name))
             {
                 songList.add(snapshot.getValue(Song.class));
@@ -46,7 +46,7 @@ public class SongData {
     public static ArrayList<Song> getSongByLanguage(String language, DataSnapshot dataSnapshot)
     {
         ArrayList<Song> songList = new ArrayList<>();
-        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+        for (DataSnapshot snapshot : dataSnapshot.child("BaiHat").getChildren()) {
             if(snapshot.child("NgonNgu").getValue(String.class).equals(language))
             {
                 songList.add(snapshot.getValue(Song.class));

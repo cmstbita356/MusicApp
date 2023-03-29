@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     ImageButton iB_find;
+    ImageButton iB_library;
     RecyclerView recyclerView_Anh;
     RecyclerView recyclerView_VietNam;
     RecyclerView recyclerView_Khac;
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setVolume(1f, 1f);
 
-        FirebaseHelper.getData("BaiHat", new ValueEventListener() {
+        FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 songList = SongData.getAllSong(dataSnapshot);
@@ -72,6 +74,17 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        iB_library.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getIntent = getIntent();
+                int id_user = getIntent.getIntExtra("id_user", 0);
+                Intent intent = new Intent(getApplicationContext(), PlaylistActivity.class);
+                intent.putExtra("id_user", id_user);
+                startActivity(intent);
+            }
+        });
     }
     private void init()
     {
@@ -79,5 +92,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView_Anh = findViewById(R.id.recyclerView_Anh);
         recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
         recyclerView_Khac = findViewById(R.id.recyclerView_Khac);
+        iB_library = findViewById(R.id.iB_library);
     }
 }

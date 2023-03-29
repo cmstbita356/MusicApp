@@ -6,7 +6,7 @@ public class UserData {
     public static User getUserById(DataSnapshot dataSnapshot, int id)
     {
         User user = new User();
-        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
         {
             if(snapshot.child("Id").getValue(Integer.class).equals(id))
             {
@@ -17,7 +17,7 @@ public class UserData {
     }
     public static boolean CheckExisted(DataSnapshot dataSnapshot, String username)
     {
-        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
         {
             if(snapshot.child("TaiKhoan").getValue(String.class).equals(username))
             {
@@ -29,7 +29,7 @@ public class UserData {
     public static int getMaxId(DataSnapshot dataSnapshot)
     {
         int maxid = 0;
-        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
         {
             maxid = snapshot.child("Id").getValue(Integer.class);
         }
