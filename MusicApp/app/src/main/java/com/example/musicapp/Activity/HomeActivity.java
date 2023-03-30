@@ -11,7 +11,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.musicapp.Adapter.HomeAdapter;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
@@ -36,11 +40,24 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
 
+    TextView tvname;
+    ImageSlider imageSlider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init();
+
+        //imageSlider
+        ArrayList<SlideModel> slideModels=new ArrayList<>();
+        slideModels.add(new SlideModel("https://i.pinimg.com/564x/0b/63/ca/0b63ca3712129db1d433175ac2c872a6.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://i.pinimg.com/564x/0b/63/ca/0b63ca3712129db1d433175ac2c872a6.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://i.pinimg.com/564x/0b/63/ca/0b63ca3712129db1d433175ac2c872a6.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://i.pinimg.com/564x/0b/63/ca/0b63ca3712129db1d433175ac2c872a6.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://i.pinimg.com/564x/0b/63/ca/0b63ca3712129db1d433175ac2c872a6.jpg", ScaleTypes.FIT));
+        imageSlider.setImageList(slideModels,ScaleTypes.FIT);
+
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setVolume(1f, 1f);
 
@@ -69,6 +86,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
         iB_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,11 +112,15 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void init()
     {
+        tvname=findViewById(R.id.textView_name);
         iB_search = findViewById(R.id.iB_search);
+        iB_library = findViewById(R.id.iB_library);
+        iB_setting = findViewById(R.id.iB_setting);
+
         recyclerView_Anh = findViewById(R.id.recyclerView_Anh);
         recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
         recyclerView_Khac = findViewById(R.id.recyclerView_Khac);
-        iB_library = findViewById(R.id.iB_library);
-        iB_setting = findViewById(R.id.iB_setting);
+
+        imageSlider=findViewById(R.id.imageSlider);
     }
 }

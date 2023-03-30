@@ -5,12 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
-    android:orientation="vertical"
-    android:background="@color/layout_background">
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iss_auto_cycle="true"
+                app:iss_period="2000"
+                app:iss_delay="4000"
+                app:iss_corner_radius="100"
+                app:iss_title_background="@color/gray"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,8 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhạc Tiếng Anh"
-                    android:textSize="30sp"
-                    android:textColor="@color/secondary_color"/>
+                    android:textSize="30sp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_Anh"
                     android:layout_width="match_parent"
@@ -49,8 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhạc Việt Nam"
-                    android:textSize="30sp"
-                    android:textColor="@color/secondary_color"/>
+                    android:textSize="30sp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_VietNam"
                     android:layout_width="match_parent"
@@ -67,8 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhạc Nhật"
-                    android:textSize="30sp"
-                    android:textColor="@color/secondary_color"/>
+                    android:textSize="30sp"/>
 
             </LinearLayout>
             <LinearLayout
@@ -80,8 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhạc Hàn"
-                    android:textSize="30sp"
-                    android:textColor="@color/secondary_color"/>
+                    android:textSize="30sp"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_Han"
                     android:layout_width="match_parent"
@@ -97,8 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhạc Khác"
-                    android:textSize="30sp"
-                    android:textColor="@color/secondary_color"/>
+                    android:textSize="30sp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_Khac"
                     android:layout_width="match_parent"
@@ -108,42 +124,54 @@
         </LinearLayout>
     </ScrollView>
 
-
+    <!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_Nhat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="#C8B9D1">
+        android:background="@color/secondary_color">
         <TextView
-            android:id="@+id/txv_namesong"
+            android:id="@+id/textView_name"
+            android:textColor="@color/main_text"
             android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:text="Tên Bài Hát"/>
-        <ImageButton
-            android:id="@+id/bt_like"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_like"
-            android:scaleType="fitStart"/>
-        <ImageButton
-            android:id="@+id/bt_pause"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_pause"
-            android:scaleType="fitXY"/>
-        <ImageButton
-            android:id="@+id/bt_next"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_forward"
-            android:scaleType="fitXY"/>
+            android:text="Tên Bài Hát"
+            android:textSize="18sp"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <ImageButton
+                android:id="@+id/bt_favorite"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_like"
+                android:scaleType="fitCenter"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/bt_play"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_pause"
+                android:layout_gravity="center"/>
+            <ImageButton
+                android:id="@+id/bt_next"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="7dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_skip_next" />
+        </LinearLayout>
 
 
     </LinearLayout>

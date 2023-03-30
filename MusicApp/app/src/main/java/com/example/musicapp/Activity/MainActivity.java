@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     Context context = this;
-    Button button_test;
+    /*Button button_test;*/
     Button button_submit;
     Button button_dangky;
     EditText editText_taikhoan;
@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         init();
 
-        button_test.setOnClickListener(new View.OnClickListener() {
+        /*button_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, HomeActivity.class);
                 startActivity(intent);
 
             }
-        });
+        });*/
 
         button_dangky.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity{
     }
     private void init()
     {
-        button_test = findViewById(R.id.button_test);
+        //button_test = findViewById(R.id.button_test);
         button_submit = findViewById(R.id.button_submit);
         editText_taikhoan = findViewById(R.id.editText_taikhoan);
         editText_matkhau = findViewById(R.id.editText_matkhau);

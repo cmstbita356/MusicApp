@@ -131,7 +131,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/layout_background"
-                android:src="@drawable/ic_favorite"
+                android:src="@drawable/ic_like"
+                android:scaleType="fitCenter"
                 android:layout_weight="1"/>
 
             <ImageButton
