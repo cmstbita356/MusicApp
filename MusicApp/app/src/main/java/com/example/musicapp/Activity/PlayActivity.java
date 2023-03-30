@@ -1,6 +1,7 @@
 package com.example.musicapp.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,26 +12,39 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.musicapp.Adapter.DialogPlaylistAdapter;
 import com.example.musicapp.Adapter.PlayAdapter;
+import com.example.musicapp.Model.FavoriteSongData;
+import com.example.musicapp.Model.Playlist;
+import com.example.musicapp.Model.PlaylistData;
 import com.example.musicapp.Model.PlaylistDetailData;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
+import com.example.musicapp.Model.UserData;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
+import com.example.musicapp.Service.StorageData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.time.chrono.IsoChronology;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlayActivity extends AppCompatActivity {
     ImageView imV_Song;
@@ -40,9 +54,13 @@ public class PlayActivity extends AppCompatActivity {
     ImageButton bt_previous;
     ImageButton bt_nexttime;
     ImageButton bt_previoustime;
+    ImageButton imageButton_back;
+    ImageButton bt_favorite;
+    ImageButton bt_repeat;
+    ImageButton bt_add;
+
     SeekBar seekBar_song;
     RecyclerView recyclerView;
-    ImageButton bt_repeat;
     TextView textView_name;
     TextView textView_singer;
 
@@ -51,6 +69,8 @@ public class PlayActivity extends AppCompatActivity {
     Handler mHandler = new Handler();
     Context context = this;
     boolean isRepeat = false;
+    boolean isFavorite = false;
+    boolean isAdded = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +123,10 @@ public class PlayActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if (mediaPlayer.isPlaying()){
                             mediaPlayer.pause();
+                            bt_play.setImageResource(R.drawable.ic_play);
                         } else {
                             mediaPlayer.start();
+                            bt_play.setImageResource(R.drawable.ic_pause);
                         }
                     }
                 });
@@ -171,13 +193,87 @@ public class PlayActivity extends AppCompatActivity {
                         if(isRepeat)
                         {
                             isRepeat = false;
+                            bt_repeat.setImageResource(R.drawable.ic_loop);
                         }
                         else
                         {
                             isRepeat = true;
+                            bt_repeat.setImageResource(R.drawable.ic_loop_selected);
                         }
                     }
                 });
+
+                FirebaseHelper.getDataChange(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        isFavorite = FavoriteSongData.check(snapshot, StorageData.id_user, id);
+                        if(isFavorite)
+                        {
+                            bt_favorite.setImageResource(R.drawable.ic_favorite_selected);
+                        }
+                        else
+                        {
+                            bt_favorite.setImageResource(R.drawable.ic_favorite);
+                        }
+                        bt_favorite.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(isFavorite)
+                                {
+                                    bt_favorite.setImageResource(R.drawable.ic_favorite);
+                                    String path = "YeuThich/" + FavoriteSongData.getKeyFavoriteSong(snapshot, StorageData.id_user, id);
+                                    FirebaseHelper.deleteData(path);
+                                    isFavorite = false;
+                                }
+                                else
+                                {
+                                    bt_favorite.setImageResource(R.drawable.ic_favorite_selected);
+                                    Map<String, Object> childValues = new HashMap<>();
+                                    childValues.put("Id_BaiHat", id);
+                                    childValues.put("Id_NguoiDung", StorageData.id_user);
+                                    FirebaseHelper.addData("YeuThich", childValues);
+                                    isFavorite = true;
+                                }
+                            }
+                        });
+
+                        isAdded = PlaylistDetailData.checkSongAdded(snapshot, StorageData.id_user, id);
+                        if(isAdded)
+                        {
+                            bt_add.setImageResource(R.drawable.ic_add_selected);
+                        }
+                        else
+                        {
+                            bt_add.setImageResource(R.drawable.ic_add);
+                        }
+                        bt_add.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                                View mView = getLayoutInflater().inflate(R.layout.dialog_layout_playlist, null);
+
+                                RecyclerView dialog_listView = mView.findViewById(R.id.dialog_recyclerView);
+                                ArrayList<Playlist> playlists = PlaylistData.getPlaylist(snapshot, StorageData.id_user);
+
+                                DialogPlaylistAdapter dialogPlaylistAdapter = new DialogPlaylistAdapter(playlists, id, context);
+                                dialog_listView.setLayoutManager(new LinearLayoutManager(context));
+                                dialog_listView.setAdapter(dialogPlaylistAdapter);
+
+
+                                mBuilder.setView(mView);
+                                AlertDialog dialog = mBuilder.create();
+                                dialog.show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -186,7 +282,13 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
-
+        imageButton_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.reset();
+                finish();
+            }
+        });
 
     }
     private void init()
@@ -203,6 +305,9 @@ public class PlayActivity extends AppCompatActivity {
         bt_repeat = findViewById(R.id.bt_repeat);
         textView_singer = findViewById(R.id.textView_singer);
         textView_name = findViewById(R.id.textView_name);
+        imageButton_back = findViewById(R.id.imageButton_back);
+        bt_favorite = findViewById(R.id.bt_favorite);
+        bt_add = findViewById(R.id.bt_add);
     }
     private Runnable updateSeekBarTime = new Runnable() {
         public void run() {

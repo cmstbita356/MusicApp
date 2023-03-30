@@ -17,6 +17,7 @@ import com.example.musicapp.Model.PlaylistDetail;
 import com.example.musicapp.Model.PlaylistDetailData;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
+import com.example.musicapp.Service.StorageData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -36,8 +37,7 @@ public class PlaylistActivity extends AppCompatActivity {
         FirebaseHelper.getData(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Intent getIntent = getIntent();
-                ArrayList<Playlist> playlists = PlaylistData.getPlaylist(dataSnapshot, getIntent.getIntExtra("id_user", 0));
+                ArrayList<Playlist> playlists = PlaylistData.getPlaylist(dataSnapshot, StorageData.id_user);
                 ArrayList<Integer> listIdPlaylist = new ArrayList<>();
                 for (Playlist item : playlists)
                 {

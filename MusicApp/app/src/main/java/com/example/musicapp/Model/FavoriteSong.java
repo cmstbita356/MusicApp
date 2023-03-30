@@ -1,11 +1,11 @@
 package com.example.musicapp.Model;
 
-public class LoveSong {
+public class FavoriteSong {
     int Id_NguoiDung;
     int Id_BaiHat;
 
-    public LoveSong(){}
-    public LoveSong(int id_NguoiDung, int id_BaiHat) {
+    public FavoriteSong(){}
+    public FavoriteSong(int id_NguoiDung, int id_BaiHat) {
         Id_NguoiDung = id_NguoiDung;
         Id_BaiHat = id_BaiHat;
     }

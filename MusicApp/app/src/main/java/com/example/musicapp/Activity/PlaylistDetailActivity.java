@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +32,7 @@ public class PlaylistDetailActivity extends AppCompatActivity {
     TextView textView_playlistName;
     TextView textView_quantitySong;
     RecyclerView recyclerView;
-
+    ImageButton imageButton_back;
     Context context = this;
     ArrayList<Song> songs = new ArrayList<>();
     @Override
@@ -61,6 +63,12 @@ public class PlaylistDetailActivity extends AppCompatActivity {
 
             }
         });
+        imageButton_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void init()
     {
@@ -68,5 +76,6 @@ public class PlaylistDetailActivity extends AppCompatActivity {
         textView_playlistName = findViewById(R.id.textView_playlistName);
         textView_quantitySong = findViewById(R.id.textView_quantitySong);
         recyclerView = findViewById(R.id.recyclerView);
+        imageButton_back = findViewById(R.id.imageButton_back);
     }
 }

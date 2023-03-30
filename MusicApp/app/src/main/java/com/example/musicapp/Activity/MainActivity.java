@@ -20,6 +20,7 @@ import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
+import com.example.musicapp.Service.StorageData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -69,8 +70,7 @@ public class MainActivity extends AppCompatActivity{
                             if(snapshot.child("TaiKhoan").getValue(String.class).equals(taikhoan) && snapshot.child("MatKhau").getValue(String.class).equals(matkhau))
                             {
                                 Intent intent = new Intent(context, HomeActivity.class);
-                                int id = snapshot.child("Id").getValue(Integer.class);
-                                intent.putExtra("id_user", id);
+                                StorageData.id_user = snapshot.child("Id").getValue(Integer.class);
                                 startActivity(intent);
                             }
 

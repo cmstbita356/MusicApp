@@ -22,13 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textSize="20sp"
+            android:textColor="@color/main_text"
             />
 
         <TextView
             android:id="@+id/textView_casi"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="11sp"
+            android:textSize="15sp"
+            android:textColor="@color/main_text"
             />
 
     </LinearLayout>

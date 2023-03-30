@@ -17,6 +17,7 @@ import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
+import com.example.musicapp.Service.StorageData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-    ImageButton iB_find;
+    ImageButton iB_search;
     ImageButton iB_library;
     RecyclerView recyclerView_Anh;
     RecyclerView recyclerView_VietNam;
@@ -67,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        iB_find.setOnClickListener(new View.OnClickListener() {
+        iB_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FindActivity.class);
@@ -78,17 +79,14 @@ public class HomeActivity extends AppCompatActivity {
         iB_library.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent getIntent = getIntent();
-                int id_user = getIntent.getIntExtra("id_user", 0);
                 Intent intent = new Intent(getApplicationContext(), PlaylistActivity.class);
-                intent.putExtra("id_user", id_user);
                 startActivity(intent);
             }
         });
     }
     private void init()
     {
-        iB_find = findViewById(R.id.iB_find);
+        iB_search = findViewById(R.id.iB_search);
         recyclerView_Anh = findViewById(R.id.recyclerView_Anh);
         recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
         recyclerView_Khac = findViewById(R.id.recyclerView_Khac);
