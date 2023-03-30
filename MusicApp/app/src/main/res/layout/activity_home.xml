@@ -142,7 +142,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:padding="10dp"
-            android:src="@drawable/ic_next"
+            android:src="@drawable/ic_forward"
             android:scaleType="fitXY"/>
 
 

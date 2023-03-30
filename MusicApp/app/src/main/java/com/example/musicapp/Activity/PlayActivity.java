@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class PlayActivity extends AppCompatActivity {
     ImageView imV_Song;
-    MediaPlayer mediaPlayer;
+    //MediaPlayer mediaPlayer;
     ImageButton bt_play;
     ImageButton bt_next;
     ImageButton bt_previous;
@@ -84,7 +84,7 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(fromUser) {
-                    mediaPlayer.seekTo(progress);
+                    StorageData.mediaPlayer.seekTo(progress);
                 }
             }
             @Override
@@ -111,7 +111,7 @@ public class PlayActivity extends AppCompatActivity {
                     ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
                 }
 
-                PlayAdapter adapter = new PlayAdapter(ListSong, context, mediaPlayer);
+                PlayAdapter adapter = new PlayAdapter(ListSong, context, StorageData.mediaPlayer);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(adapter);
 
@@ -121,11 +121,11 @@ public class PlayActivity extends AppCompatActivity {
                 bt_play.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mediaPlayer.isPlaying()){
-                            mediaPlayer.pause();
+                        if (StorageData.mediaPlayer.isPlaying()){
+                            StorageData.mediaPlayer.pause();
                             bt_play.setImageResource(R.drawable.ic_play);
                         } else {
-                            mediaPlayer.start();
+                            StorageData.mediaPlayer.start();
                             bt_play.setImageResource(R.drawable.ic_pause);
                         }
                     }
@@ -172,8 +172,8 @@ public class PlayActivity extends AppCompatActivity {
                 bt_nexttime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int nextTime = mediaPlayer.getCurrentPosition() + 10000;
-                        mediaPlayer.seekTo(nextTime);
+                        int nextTime = StorageData.mediaPlayer.getCurrentPosition() + 10000;
+                        StorageData.mediaPlayer.seekTo(nextTime);
                         seekBar_song.setProgress(nextTime);
                     }
                 });
@@ -181,8 +181,8 @@ public class PlayActivity extends AppCompatActivity {
                 bt_previoustime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int previousTime = mediaPlayer.getCurrentPosition() - 10000;
-                        mediaPlayer.seekTo(previousTime);
+                        int previousTime = StorageData.mediaPlayer.getCurrentPosition() - 10000;
+                        StorageData.mediaPlayer.seekTo(previousTime);
                         seekBar_song.setProgress(previousTime);
                     }
                 });
@@ -285,7 +285,7 @@ public class PlayActivity extends AppCompatActivity {
         imageButton_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.reset();
+                //StorageData.mediaPlayer.reset();
                 finish();
             }
         });
@@ -294,7 +294,7 @@ public class PlayActivity extends AppCompatActivity {
     private void init()
     {
         imV_Song = findViewById(R.id.imV_song);
-        mediaPlayer = new MediaPlayer();
+        //mediaPlayer = new MediaPlayer();
         bt_play = findViewById(R.id.bt_play);
         bt_next = findViewById(R.id.bt_next);
         bt_previous = findViewById(R.id.bt_previous);
@@ -311,22 +311,22 @@ public class PlayActivity extends AppCompatActivity {
     }
     private Runnable updateSeekBarTime = new Runnable() {
         public void run() {
-            int currentPosition = mediaPlayer.getCurrentPosition();
+            int currentPosition = StorageData.mediaPlayer.getCurrentPosition();
             seekBar_song.setProgress(currentPosition);
             mHandler.postDelayed(this, 1000);
         }
     };
     private void playSong(String songLink) {
         try {
-            mediaPlayer.reset();
-            mediaPlayer.setDataSource(songLink);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
+            StorageData.mediaPlayer.reset();
+            StorageData.mediaPlayer.setDataSource(songLink);
+            StorageData.mediaPlayer.prepare();
+            StorageData.mediaPlayer.start();
 
-            seekBar_song.setMax(mediaPlayer.getDuration());
+            seekBar_song.setMax(StorageData.mediaPlayer.getDuration());
             mHandler.postDelayed(updateSeekBarTime, 1000);
 
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            StorageData.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     if(isRepeat)

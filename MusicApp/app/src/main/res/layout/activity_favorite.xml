@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PlaylistActivity"
-    android:orientation="vertical"
-    android:background="@color/layout_background">
+    tools:context=".Activity.FavoriteActivity"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -22,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="Playlist"
+            android:text="Favorite Songs"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:layout_weight="1"
@@ -32,31 +31,12 @@
             android:layout_height="50dp"
             android:src="@drawable/logoapp"/>
     </LinearLayout>
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/layout_background"
-        android:layout_weight="1">
-
-        <GridView
-            android:id="@+id/gridView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="auto_fit"/>
-
-
-        <ImageButton
-            android:id="@+id/imageButton_addPlaylist"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/layout_background"
-            android:src="@drawable/ic_add_playlist" />
-
-    </RelativeLayout>
-
-
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/layout_background"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -151,8 +131,5 @@
                 android:textColor="@color/main_text"
                 android:gravity="center"/>
         </LinearLayout>
-
-
-
     </LinearLayout>
 </LinearLayout>

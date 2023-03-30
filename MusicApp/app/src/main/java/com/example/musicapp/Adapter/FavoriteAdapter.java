@@ -18,27 +18,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class FindAdapter extends RecyclerView.Adapter<FindAdapter.ViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
     ArrayList<Song> data;
     Context context;
 
-    public FindAdapter(ArrayList<Song> data, Context context) {
+    public FavoriteAdapter(ArrayList<Song> data, Context context) {
         this.data = data;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public FindAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_layout_find, parent, false);
+    public FavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_layout_favorite, parent, false);
 
-        FindAdapter.ViewHolder viewHolder = new FindAdapter.ViewHolder(v);
+        FavoriteAdapter.ViewHolder viewHolder = new FavoriteAdapter.ViewHolder(v);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FindAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavoriteAdapter.ViewHolder holder, int position) {
         Song song = data.get(position);
         holder.textView_ten.setText(song.getTen());
         holder.textView_casi.setText(song.getCaSi());

@@ -22,10 +22,7 @@ public class PlaylistData {
         int maxid = 0;
         for (DataSnapshot snapshot : dataSnapshot.child("Playlist").getChildren())
         {
-            if(snapshot.child("Id_NguoiDung").getValue(Integer.class).equals(id_nguoidung))
-            {
-                maxid = snapshot.child("Id").getValue(Integer.class);
-            }
+            maxid = snapshot.child("Id").getValue(Integer.class);
         }
         return maxid;
     }

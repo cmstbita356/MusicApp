@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     ImageButton iB_search;
     ImageButton iB_library;
+    ImageButton iB_setting;
     RecyclerView recyclerView_Anh;
     RecyclerView recyclerView_VietNam;
     RecyclerView recyclerView_Khac;
@@ -79,7 +80,14 @@ public class HomeActivity extends AppCompatActivity {
         iB_library.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PlaylistActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LibraryActivity.class);
+                startActivity(intent);
+            }
+        });
+        iB_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
             }
         });
@@ -91,5 +99,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
         recyclerView_Khac = findViewById(R.id.recyclerView_Khac);
         iB_library = findViewById(R.id.iB_library);
+        iB_setting = findViewById(R.id.iB_setting);
     }
 }

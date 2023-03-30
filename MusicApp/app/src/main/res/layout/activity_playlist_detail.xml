@@ -77,50 +77,97 @@
         android:layout_weight="1"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="@color/gray">
+        android:background="#444444">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/iB_home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home"
+                android:backgroundTint="@color/footer_color"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="@color/main_text"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/iB_library"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
 
-        <ImageButton
-            android:id="@+id/iB_home"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/homee"
-            android:scaleType="fitXY"
-            android:backgroundTint="@color/gray"
-            android:paddingTop="10dp"/>
+                android:src="@drawable/ic_library_selected"
+                android:backgroundTint="@color/footer_color"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Library"
+                android:textColor="@color/secondary_color"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/iB_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
 
+                android:src="@drawable/ic_search"
+                android:backgroundTint="@color/footer_color"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textColor="@color/main_text"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/iB_setting"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
 
-        <ImageButton
-            android:id="@+id/iB_library"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:src="@drawable/libraryy"
-            android:scaleType="fitXY"
-            android:backgroundTint="@color/gray"
-            android:paddingTop="10dp"
-            android:layout_marginLeft="25dp"/>
-
-        <ImageButton
-            android:id="@+id/iB_find"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:src="@drawable/findd"
-            android:scaleType="fitXY"
-            android:backgroundTint="@color/gray"
-            android:paddingTop="10dp"
-            android:layout_marginLeft="25dp"/>
-
-        <ImageButton
-            android:id="@+id/iB_settings"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:src="@drawable/settingss"
-            android:scaleType="fitXY"
-            android:backgroundTint="@color/gray"
-            android:paddingTop="10dp"
-            android:layout_marginLeft="25dp"/>
+                android:src="@drawable/ic_setting"
+                android:backgroundTint="@color/footer_color"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Setting"
+                android:textColor="@color/main_text"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

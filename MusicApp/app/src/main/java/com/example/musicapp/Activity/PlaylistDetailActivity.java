@@ -33,6 +33,10 @@ public class PlaylistDetailActivity extends AppCompatActivity {
     TextView textView_quantitySong;
     RecyclerView recyclerView;
     ImageButton imageButton_back;
+    ImageButton iB_home;
+    ImageButton iB_search;
+    ImageButton iB_setting;
+    ImageButton iB_library;
     Context context = this;
     ArrayList<Song> songs = new ArrayList<>();
     @Override
@@ -69,6 +73,38 @@ public class PlaylistDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        iB_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        iB_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FindActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        iB_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        iB_library.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LibraryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void init()
     {
@@ -77,5 +113,9 @@ public class PlaylistDetailActivity extends AppCompatActivity {
         textView_quantitySong = findViewById(R.id.textView_quantitySong);
         recyclerView = findViewById(R.id.recyclerView);
         imageButton_back = findViewById(R.id.imageButton_back);
+        iB_home = findViewById(R.id.iB_home);
+        iB_search = findViewById(R.id.iB_search);
+        iB_setting = findViewById(R.id.iB_setting);
+        iB_library = findViewById(R.id.iB_library);
     }
 }

@@ -75,11 +75,11 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/bt_previous"
-                android:layout_marginLeft="25dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="@color/layout_background"
@@ -96,11 +96,12 @@
 
             <ImageButton
                 android:id="@+id/bt_play"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:backgroundTint="@color/layout_background"
                 android:scaleType="fitStart"
-                android:src="@drawable/ic_pause" />
+                android:src="@drawable/ic_pause"
+                android:layout_gravity="center"/>
 
             <ImageButton
                 android:id="@+id/bt_nexttime"
