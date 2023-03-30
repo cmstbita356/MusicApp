@@ -25,4 +25,14 @@ public class PlaylistDetailData {
         }
         return result;
     }
+    public static ArrayList<Song> getSongsByIdPlaylist(DataSnapshot dataSnapshot, int id_playlist)
+    {
+        ArrayList<Song> result = new ArrayList<>();
+        for (DataSnapshot snapshot : dataSnapshot.child("PlaylistDetail").getChildren()) {
+            if (snapshot.child("Id_Playlist").getValue(Integer.class).equals(id_playlist)) {
+                result.add(SongData.getSongById(snapshot.child("Id_BaiHat").getValue(Integer.class), dataSnapshot));
+            }
+        }
+        return result;
+    }
 }

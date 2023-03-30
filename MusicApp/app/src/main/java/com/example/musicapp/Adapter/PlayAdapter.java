@@ -46,7 +46,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.ViewHolder>{
         Song song = data.get(position);
         holder.textView_ten.setText(song.getTen());
         holder.textView_casi.setText(song.getCaSi());
-        Picasso.get().load(data.get(position).getHinh()).into(holder.imageView);
+        Picasso.get().load(song.getHinh()).into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

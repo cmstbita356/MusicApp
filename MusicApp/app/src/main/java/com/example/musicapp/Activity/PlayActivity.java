@@ -18,6 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.musicapp.Adapter.PlayAdapter;
+import com.example.musicapp.Model.PlaylistDetailData;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
 import com.example.musicapp.R;
@@ -80,7 +81,16 @@ public class PlayActivity extends AppCompatActivity {
                 textView_name.setText(song.getTen());
                 textView_singer.setText(song.getCaSi());
 
-                ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
+                String string_id_playlist = intent.getStringExtra("id_playlist");
+                if(isNumeric(string_id_playlist))
+                {
+                    ListSong = PlaylistDetailData.getSongsByIdPlaylist(dataSnapshot, Integer.parseInt(string_id_playlist));
+                }
+                else
+                {
+                    ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
+                }
+
                 PlayAdapter adapter = new PlayAdapter(ListSong, context, mediaPlayer);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(adapter);
@@ -226,6 +236,16 @@ public class PlayActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    private boolean isNumeric(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

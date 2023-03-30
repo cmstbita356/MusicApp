@@ -2,7 +2,6 @@ package com.example.musicapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,45 +11,47 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musicapp.Activity.MainActivity;
 import com.example.musicapp.Activity.PlayActivity;
+import com.example.musicapp.Model.PlaylistDetail;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
-    ArrayList<Song> data;
+public class PlaylistDetailAdapter extends RecyclerView.Adapter<PlaylistDetailAdapter.ViewHolder> {
+    ArrayList<Song> data = new ArrayList<>();
+    int id_playlist;
     Context context;
 
-    public HomeAdapter(ArrayList<Song> data, Context context) {
+    public PlaylistDetailAdapter(ArrayList<Song> data, int id_playlist, Context context) {
         this.data = data;
+        this.id_playlist = id_playlist;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_layout_home, parent, false);
+    public PlaylistDetailAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_layout_playlistdetail, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(v);
+        PlaylistDetailAdapter.ViewHolder viewHolder = new PlaylistDetailAdapter.ViewHolder(v);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlaylistDetailAdapter.ViewHolder holder, int position) {
         Song song = data.get(position);
         holder.textView_ten.setText(song.getTen());
         holder.textView_casi.setText(song.getCaSi());
-        Picasso.get().load(data.get(position).getHinh()).into(holder.imageView);
+        Picasso.get().load(song.getHinh()).into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PlayActivity.class);
                 intent.putExtra("id", song.getId());
-                intent.putExtra("id_playlist", "không");
+                intent.putExtra("id_playlist", String.valueOf(id_playlist));
                 context.startActivity(intent);
             }
         });

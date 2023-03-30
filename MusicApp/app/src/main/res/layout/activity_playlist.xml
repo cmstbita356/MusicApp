@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.PlaylistActivity"
-    android:numColumns="auto_fit">
+    android:numColumns="auto_fit"
+    android:background="#333333">
 
 </GridView>

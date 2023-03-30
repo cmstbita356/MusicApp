@@ -51,6 +51,8 @@ public class PlaylistActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(context, PlaylistDetailActivity.class);
                         intent.putExtra("id_playlist", playlists.get(position).getId());
+                        intent.putExtra("ten_playlist", playlists.get(position).getTen());
+                        intent.putExtra("soluong_baihat", listQuantitySong.get(position));
                         startActivity(intent);
                     }
                 });
