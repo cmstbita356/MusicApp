@@ -5,8 +5,8 @@
         </shape>
     </item>
     <item
-        android:width="24dp"
-        android:height="24dp"
+        android:width="30dp"
+        android:height="30dp"
         android:drawable="@drawable/ic_dropdown"
         android:gravity="end" />
 </layer-list>

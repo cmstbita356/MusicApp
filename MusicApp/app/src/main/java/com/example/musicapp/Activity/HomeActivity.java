@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +33,6 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView recyclerView_VietNam;
     RecyclerView recyclerView_Khac;
 
-    MediaPlayer mediaPlayer;
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
 
@@ -41,8 +41,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init();
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setVolume(1f, 1f);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int progress = sharedPreferences.getInt("volume", 50);
+        float volume = progress / 100f;
+        StorageData.mediaPlayer.setVolume(volume, volume);
+
+
 
         FirebaseHelper.getData(new ValueEventListener() {
             @Override
