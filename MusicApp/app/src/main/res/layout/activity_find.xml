@@ -14,15 +14,16 @@
         android:paddingBottom="10dp">
         <EditText
             android:id="@+id/editText_find"
-            android:layout_width="375dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:textSize="26dp"
             android:inputType="textPersonName"
             android:hint="Nhấp để tìm kiếm ..."
             android:textColor="@color/main_text"
-            android:textColorHint="@color/main_text"/>
+            android:textColorHint="@color/main_text"
+            android:layout_weight="1"/>
         <ImageButton
             android:id="@+id/bt_find"
             android:layout_width="wrap_content"

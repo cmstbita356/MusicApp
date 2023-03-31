@@ -48,7 +48,6 @@ import java.util.Map;
 
 public class PlayActivity extends AppCompatActivity {
     ImageView imV_Song;
-    //MediaPlayer mediaPlayer;
     ImageButton bt_play;
     ImageButton bt_next;
     ImageButton bt_previous;
@@ -59,7 +58,6 @@ public class PlayActivity extends AppCompatActivity {
     ImageButton bt_repeat;
     ImageButton bt_add;
     SeekBar seekBar_song;
-    //RecyclerView recyclerView;
     Button button_songList;
     TextView textView_name;
     TextView textView_singer;
@@ -109,12 +107,17 @@ public class PlayActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
+                    if (string_id_playlist.equals("favorite"))
+                    {
+                        ListSong = FavoriteSongData.getListFavoriteSong(dataSnapshot, StorageData.id_user);
+                    }
+                    else
+                    {
+                        ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
+                    }
+
                 }
 
-                //PlayAdapter adapter = new PlayAdapter(ListSong, context, StorageData.mediaPlayer);
-                //recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-                //recyclerView.setAdapter(adapter);
 
                 Picasso.get().load(song.getHinh()).into(imV_Song);
                 playSong(song.getLink());
@@ -340,7 +343,6 @@ public class PlayActivity extends AppCompatActivity {
         seekBar_song = findViewById(R.id.seekBar_song);
         bt_nexttime = findViewById(R.id.bt_nexttime);
         bt_previoustime = findViewById(R.id.bt_previoustime);
-        //recyclerView = findViewById(R.id.recyclerView);
         bt_repeat = findViewById(R.id.bt_repeat);
         textView_singer = findViewById(R.id.textView_singer);
         textView_name = findViewById(R.id.textView_name);

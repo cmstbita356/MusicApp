@@ -48,7 +48,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             public void onClick(View v) {
                 Intent intent = new Intent(context, PlayActivity.class);
                 intent.putExtra("id", song.getId());
-                intent.putExtra("id_playlist", "khong");
+                intent.putExtra("id_playlist", "favorite");
                 context.startActivity(intent);
             }
         });
