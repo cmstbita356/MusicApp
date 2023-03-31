@@ -119,6 +119,11 @@ public class PlayActivity extends AppCompatActivity {
                 Picasso.get().load(song.getHinh()).into(imV_Song);
                 playSong(song.getLink());
 
+                if (savedInstanceState != null) {
+                    int currentPosition = savedInstanceState.getInt("currentPosition");
+                    StorageData.mediaPlayer.seekTo(currentPosition);
+                }
+
                 bt_play.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -280,6 +285,7 @@ public class PlayActivity extends AppCompatActivity {
                                 View mView = getLayoutInflater().inflate(R.layout.dialog_layout_playlist, null);
 
                                 RecyclerView dialog_listView = mView.findViewById(R.id.dialog_recyclerView);
+                                Button button_cancel = mView.findViewById(R.id.button_cancel);
                                 ArrayList<Playlist> playlists = PlaylistData.getPlaylist(snapshot, StorageData.id_user);
 
                                 DialogPlaylistAdapter dialogPlaylistAdapter = new DialogPlaylistAdapter(playlists, id, context);
@@ -290,6 +296,13 @@ public class PlayActivity extends AppCompatActivity {
                                 mBuilder.setView(mView);
                                 AlertDialog dialog = mBuilder.create();
                                 dialog.show();
+
+                                button_cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
                             }
                         });
                     }
@@ -377,6 +390,7 @@ public class PlayActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     private boolean isNumeric(String str) {
         if (str == null || str.length() == 0) {
             return false;
@@ -411,5 +425,11 @@ public class PlayActivity extends AppCompatActivity {
         return finalTimerString;
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        int current = StorageData.mediaPlayer.getCurrentPosition();
+        outState.putInt("currentPosition", current);
+    }
 }

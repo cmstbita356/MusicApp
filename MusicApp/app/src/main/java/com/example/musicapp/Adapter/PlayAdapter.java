@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,8 +33,8 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.ViewHolder>{
     @NonNull
     @Override
     public PlayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_layout_play, parent, false);
-        v.setBackgroundResource(R.drawable.background_item_layout);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_dialog_layout_play, parent, false);
+
 
         PlayAdapter.ViewHolder viewHolder = new PlayAdapter.ViewHolder(v);
 
