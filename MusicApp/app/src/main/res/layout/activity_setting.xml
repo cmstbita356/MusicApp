@@ -12,6 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Setting"
+            android:textColor="@color/main_text"
+            android:textSize="35sp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,9 +50,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Hẹn giờ tắt:"
+                android:textSize="20sp"
+                android:text="Sleep timer: "
                 android:textColor="@color/main_text"/>
+            <Spinner
+                android:id="@+id/spinner_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/custom_spinner_arrow"
+                android:paddingEnd="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/main_text"
+                android:text="Phút"
+                android:layout_marginStart="10dp"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/logOut"

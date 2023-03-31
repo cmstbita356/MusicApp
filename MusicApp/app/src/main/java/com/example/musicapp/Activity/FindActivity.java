@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FindActivity extends AppCompatActivity {
+public class    FindActivity extends AppCompatActivity {
     EditText editText_find;
     ImageButton bt_find;
     RecyclerView recyclerView_find;

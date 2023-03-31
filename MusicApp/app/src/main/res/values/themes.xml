@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+<!--    <style name="SeekBarPreferenceStyle" parent="Preference.MaterialComponents.SeekBarPreference">-->
+<!--        <item name="android:textColorPrimary">@color/main_text</item>-->
+<!--        <item name="android:textColorSecondary">@color/main_text</item>-->
+<!--    </style>-->
+
 </resources>
