@@ -35,6 +35,7 @@ public class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.ViewHolder>{
     @Override
     public PlayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_layout_play, parent, false);
+        v.setBackgroundResource(R.drawable.background_item_layout);
 
         PlayAdapter.ViewHolder viewHolder = new PlayAdapter.ViewHolder(v);
 

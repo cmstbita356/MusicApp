@@ -58,12 +58,13 @@ public class PlayActivity extends AppCompatActivity {
     ImageButton bt_favorite;
     ImageButton bt_repeat;
     ImageButton bt_add;
-
     SeekBar seekBar_song;
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
+    Button button_songList;
     TextView textView_name;
     TextView textView_singer;
-
+    TextView textView_currentTime;
+    TextView textView_maxTime;
     Song song;
     ArrayList<Song> ListSong;
     Handler mHandler = new Handler();
@@ -111,9 +112,9 @@ public class PlayActivity extends AppCompatActivity {
                     ListSong = SongData.getSongByLanguage(song.getNgonNgu(), dataSnapshot);
                 }
 
-                PlayAdapter adapter = new PlayAdapter(ListSong, context, StorageData.mediaPlayer);
-                recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-                recyclerView.setAdapter(adapter);
+                //PlayAdapter adapter = new PlayAdapter(ListSong, context, StorageData.mediaPlayer);
+                //recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+                //recyclerView.setAdapter(adapter);
 
                 Picasso.get().load(song.getHinh()).into(imV_Song);
                 playSong(song.getLink());
@@ -203,6 +204,32 @@ public class PlayActivity extends AppCompatActivity {
                     }
                 });
 
+                button_songList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                        View mView = getLayoutInflater().inflate(R.layout.dialog_layout_play, null);
+
+                        RecyclerView recyclerView = mView.findViewById(R.id.recyclerView);
+                        Button button_cancel = mView.findViewById(R.id.button_cancel);
+
+                        PlayAdapter adapter = new PlayAdapter(ListSong, context, StorageData.mediaPlayer);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+                        recyclerView.setAdapter(adapter);
+
+                        mBuilder.setView(mView);
+                        AlertDialog dialog = mBuilder.create();
+                        dialog.show();
+
+                        button_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                });
+
                 FirebaseHelper.getDataChange(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -285,7 +312,7 @@ public class PlayActivity extends AppCompatActivity {
         imageButton_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //StorageData.mediaPlayer.reset();
+                StorageData.mediaPlayer.reset();
                 finish();
             }
         });
@@ -294,25 +321,29 @@ public class PlayActivity extends AppCompatActivity {
     private void init()
     {
         imV_Song = findViewById(R.id.imV_song);
-        //mediaPlayer = new MediaPlayer();
         bt_play = findViewById(R.id.bt_play);
         bt_next = findViewById(R.id.bt_next);
         bt_previous = findViewById(R.id.bt_previous);
         seekBar_song = findViewById(R.id.seekBar_song);
         bt_nexttime = findViewById(R.id.bt_nexttime);
         bt_previoustime = findViewById(R.id.bt_previoustime);
-        recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView = findViewById(R.id.recyclerView);
         bt_repeat = findViewById(R.id.bt_repeat);
         textView_singer = findViewById(R.id.textView_singer);
         textView_name = findViewById(R.id.textView_name);
         imageButton_back = findViewById(R.id.imageButton_back);
         bt_favorite = findViewById(R.id.bt_favorite);
         bt_add = findViewById(R.id.bt_add);
+        textView_currentTime = findViewById(R.id.textView_currentTime);
+        textView_maxTime = findViewById(R.id.textView_maxTime);
+        button_songList = findViewById(R.id.button_songList);
     }
+
     private Runnable updateSeekBarTime = new Runnable() {
         public void run() {
             int currentPosition = StorageData.mediaPlayer.getCurrentPosition();
             seekBar_song.setProgress(currentPosition);
+            textView_currentTime.setText(milliSecondsToTimer(currentPosition));
             mHandler.postDelayed(this, 1000);
         }
     };
@@ -324,6 +355,7 @@ public class PlayActivity extends AppCompatActivity {
             StorageData.mediaPlayer.start();
 
             seekBar_song.setMax(StorageData.mediaPlayer.getDuration());
+            textView_maxTime.setText(String.valueOf(milliSecondsToTimer(StorageData.mediaPlayer.getDuration())));
             mHandler.postDelayed(updateSeekBarTime, 1000);
 
             StorageData.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -333,6 +365,10 @@ public class PlayActivity extends AppCompatActivity {
                     {
                         mp.seekTo(0);
                         mp.start();
+                    }
+                    else
+                    {
+                        bt_play.setImageResource(R.drawable.ic_play);
                     }
 
                 }
@@ -352,5 +388,28 @@ public class PlayActivity extends AppCompatActivity {
         }
         return true;
     }
+    private String milliSecondsToTimer(long milliseconds) {
+        String finalTimerString = "";
+        String secondsString = "";
+
+        int hours = (int) (milliseconds / (1000 * 60 * 60));
+        int minutes = (int) (milliseconds % (1000 * 60 * 60)) / (1000 * 60);
+        int seconds = (int) ((milliseconds % (1000 * 60 * 60)) % (1000 * 60) / 1000);
+
+        if (hours > 0) {
+            finalTimerString = hours + ":";
+        }
+
+        if (seconds < 10) {
+            secondsString = "0" + seconds;
+        } else {
+            secondsString = "" + seconds;
+        }
+
+        finalTimerString = finalTimerString + minutes + ":" + secondsString;
+
+        return finalTimerString;
+    }
+
 
 }

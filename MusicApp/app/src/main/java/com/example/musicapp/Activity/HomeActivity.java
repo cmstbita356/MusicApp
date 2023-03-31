@@ -11,7 +11,10 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.musicapp.Adapter.HomeAdapter;
 import com.example.musicapp.Model.Song;
@@ -32,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView recyclerView_Anh;
     RecyclerView recyclerView_VietNam;
     RecyclerView recyclerView_Khac;
+    LinearLayout miniLayout_Play;
 
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
@@ -42,12 +46,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         init();
 
+        //Nhớ xóa
+        miniLayout_Play.setVisibility(View.GONE);
+
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int progress = sharedPreferences.getInt("volume", 50);
         float volume = progress / 100f;
         StorageData.mediaPlayer.setVolume(volume, volume);
-
-
 
         FirebaseHelper.getData(new ValueEventListener() {
             @Override
@@ -105,5 +110,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView_Khac = findViewById(R.id.recyclerView_Khac);
         iB_library = findViewById(R.id.iB_library);
         iB_setting = findViewById(R.id.iB_setting);
+        miniLayout_Play = findViewById(R.id.miniLayout_Play);
     }
 }

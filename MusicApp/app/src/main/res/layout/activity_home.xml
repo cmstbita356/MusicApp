@@ -111,38 +111,42 @@
 
 
     <LinearLayout
+        android:id="@+id/miniLayout_Play"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="#C8B9D1">
+        android:background="#000000">
         <TextView
             android:id="@+id/txv_namesong"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Tên Bài Hát"/>
+            android:text="Tên Bài Hát"
+            android:textColor="@color/secondary_color"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="17sp"/>
         <ImageButton
             android:id="@+id/bt_like"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:background="#000000"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="10dp"
-            android:src="@drawable/ic_like"
+            android:src="@drawable/ic_skip_previous"
             android:scaleType="fitStart"/>
         <ImageButton
             android:id="@+id/bt_pause"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:background="#000000"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="10dp"
-            android:src="@drawable/ic_pause"
-            android:scaleType="fitXY"/>
+            android:src="@drawable/ic_pause"/>
         <ImageButton
             android:id="@+id/bt_next"
-            android:background="#C8B9D1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:background="#000000"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:padding="10dp"
-            android:src="@drawable/ic_forward"
+            android:src="@drawable/ic_skip_next"
             android:scaleType="fitXY"/>
 
 

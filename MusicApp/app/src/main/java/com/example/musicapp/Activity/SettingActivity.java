@@ -1,15 +1,7 @@
 package com.example.musicapp.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceScreen;
-import androidx.preference.SeekBarPreference;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -120,7 +111,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_laylout_logout, null);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_layout_logout, null);
 
                 Button button_no = mView.findViewById(R.id.button_no);
                 Button button_yes = mView.findViewById(R.id.button_yes);
