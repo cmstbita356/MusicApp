@@ -209,25 +209,25 @@ public class PlayActivity extends AppCompatActivity {
                         isFavorite = FavoriteSongData.check(snapshot, StorageData.id_user, id);
                         if(isFavorite)
                         {
-                            bt_favorite.setImageResource(R.drawable.ic_liked);
+                            bt_favorite.setImageResource(R.drawable.ic_favorite_selected);
                         }
                         else
                         {
-                            bt_favorite.setImageResource(R.drawable.ic_like);
+                            bt_favorite.setImageResource(R.drawable.ic_favorite);
                         }
                         bt_favorite.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 if(isFavorite)
                                 {
-                                    bt_favorite.setImageResource(R.drawable.ic_like);
+                                    bt_favorite.setImageResource(R.drawable.ic_favorite);
                                     String path = "YeuThich/" + FavoriteSongData.getKeyFavoriteSong(snapshot, StorageData.id_user, id);
                                     FirebaseHelper.deleteData(path);
                                     isFavorite = false;
                                 }
                                 else
                                 {
-                                    bt_favorite.setImageResource(R.drawable.ic_liked);
+                                    bt_favorite.setImageResource(R.drawable.ic_favorite_selected);
                                     Map<String, Object> childValues = new HashMap<>();
                                     childValues.put("Id_BaiHat", id);
                                     childValues.put("Id_NguoiDung", StorageData.id_user);

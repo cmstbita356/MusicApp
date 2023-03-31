@@ -4,52 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.FindActivity"
-    android:orientation="vertical">
+    android:background="@color/layout_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
         <EditText
             android:id="@+id/editText_find"
             android:layout_width="375dp"
             android:layout_height="56dp"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:textSize="26dp"
             android:inputType="textPersonName"
-            android:hint="Nhấp để tìm kiếm ..."/>
-
-        <Button
+            android:hint="Nhấp để tìm kiếm ..."
+            android:textColor="@color/main_text"
+            android:textColorHint="@color/main_text"/>
+        <ImageButton
             android:id="@+id/bt_find"
-            android:layout_width="371dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:text="Tìm kiếm"/>
-        <TextView
-            android:id="@+id/bt_historysearch"
-            android:layout_width="371dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:text="Lịch Sử tìm kiếm"
-            android:textColor="@color/gray"
-            android:textAlignment="viewEnd"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_find"
-            android:layout_width="372dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="40dp"/>
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            android:background="@color/layout_background"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_find"
+        android:layout_width="372dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -89,6 +79,7 @@
                 android:id="@+id/iB_library"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+
                 android:src="@drawable/ic_library"
                 android:backgroundTint="@color/footer_color"
                 android:paddingTop="10dp"/>
@@ -110,6 +101,7 @@
                 android:id="@+id/iB_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+
                 android:src="@drawable/ic_search_selected"
                 android:backgroundTint="@color/footer_color"
                 android:paddingTop="10dp"/>
@@ -142,8 +134,6 @@
                 android:textColor="@color/main_text"
                 android:gravity="center"/>
         </LinearLayout>
-
-
-
     </LinearLayout>
+
 </LinearLayout>

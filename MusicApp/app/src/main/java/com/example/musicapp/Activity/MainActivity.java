@@ -14,10 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.musicapp.Adapter.HomeAdapter;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
+import com.example.musicapp.Model.UserData;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
 import com.example.musicapp.Service.StorageData;
@@ -30,25 +33,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     Context context = this;
-    /*Button button_test;*/
     Button button_submit;
     Button button_dangky;
     EditText editText_taikhoan;
     EditText editText_matkhau;
+    TextView textView_error;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
 
-        /*button_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, HomeActivity.class);
-                startActivity(intent);
-
-            }
-        });*/
 
         button_dangky.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,15 +60,16 @@ public class MainActivity extends AppCompatActivity{
                     public void onClick(View v) {
                         String taikhoan = editText_taikhoan.getText().toString();
                         String matkhau = editText_matkhau.getText().toString();
-                        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
+                        if (UserData.checkLogin(dataSnapshot, taikhoan, matkhau))
                         {
-                            if(snapshot.child("TaiKhoan").getValue(String.class).equals(taikhoan) && snapshot.child("MatKhau").getValue(String.class).equals(matkhau))
-                            {
-                                Intent intent = new Intent(context, HomeActivity.class);
-                                StorageData.id_user = snapshot.child("Id").getValue(Integer.class);
-                                startActivity(intent);
-                            }
-
+                            Intent intent = new Intent(context, HomeActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            textView_error.setText("Incorrect username or password.");
+                            editText_taikhoan.setText("");
+                            editText_matkhau.setText("");
                         }
                     }
                 });
@@ -87,10 +83,10 @@ public class MainActivity extends AppCompatActivity{
     }
     private void init()
     {
-        //button_test = findViewById(R.id.button_test);
         button_submit = findViewById(R.id.button_submit);
         editText_taikhoan = findViewById(R.id.editText_taikhoan);
         editText_matkhau = findViewById(R.id.editText_matkhau);
         button_dangky = findViewById(R.id.button_dangky);
+        textView_error = findViewById(R.id.textView_error);
     }
 }

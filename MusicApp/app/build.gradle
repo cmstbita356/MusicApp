@@ -40,7 +40,4 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-    //imageSlider
-    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 }

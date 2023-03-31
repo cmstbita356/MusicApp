@@ -1,5 +1,9 @@
 package com.example.musicapp.Model;
 
+import android.content.Intent;
+
+import com.example.musicapp.Activity.HomeActivity;
+import com.example.musicapp.Service.StorageData;
 import com.google.firebase.database.DataSnapshot;
 
 public class UserData {
@@ -14,6 +18,18 @@ public class UserData {
             }
         }
         return null;
+    }
+    public static boolean checkLogin(DataSnapshot dataSnapshot, String taikhoan, String matkhau)
+    {
+        for (DataSnapshot snapshot : dataSnapshot.child("NguoiDung").getChildren())
+        {
+            if(snapshot.child("TaiKhoan").getValue(String.class).equals(taikhoan) && snapshot.child("MatKhau").getValue(String.class).equals(matkhau))
+            {
+                StorageData.id_user = snapshot.child("Id").getValue(Integer.class);
+                return true;
+            }
+        }
+        return false;
     }
     public static boolean CheckExisted(DataSnapshot dataSnapshot, String username)
     {

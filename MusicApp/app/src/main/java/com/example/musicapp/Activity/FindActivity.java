@@ -86,7 +86,7 @@ public class FindActivity extends AppCompatActivity {
     private void init()
     {
         editText_find = findViewById(R.id.editText_find);
-        bt_find = findViewById(R.id.iB_search);
+        bt_find = findViewById(R.id.bt_find);
         recyclerView_find = findViewById(R.id.recyclerView_find);
         iB_home = findViewById(R.id.iB_home);
         iB_library = findViewById(R.id.iB_library);
