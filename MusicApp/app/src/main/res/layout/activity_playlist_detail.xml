@@ -32,49 +32,62 @@
             android:layout_height="50dp"
             android:src="@drawable/logoapp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#333333"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="#333333"
         android:paddingBottom="20dp">
+
         <ImageView
             android:id="@+id/imageView_playlist"
             android:layout_width="200dp"
-            android:layout_height="150dp"/>
+            android:layout_height="130dp"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView_playlistName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:text="Tên playlist"
             android:textColor="@color/white"
-            android:text="Tên playlist"/>
+            android:textSize="20sp"/>
+
         <TextView
             android:id="@+id/textView_quantitySong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:text="Số lượng bài hát"
             android:textColor="#DDDDDD"
-            android:text="Số lượng bài hát"/>
+            android:textSize="15sp"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="List of songs"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:background="@drawable/border_playlistdetail"
-        android:padding="5dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="10">
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="List of songs"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:background="@drawable/border_playlistdetail"
+            android:padding="5dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"

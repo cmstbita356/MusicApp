@@ -35,6 +35,11 @@ public class FirebaseHelper {
         DatabaseReference parentNode = FirebaseDatabase.getInstance().getReference(path);
         parentNode.child(key).setValue(value).addOnSuccessListener(listener);
     }
+    public static void editData(String path,  Object value)
+    {
+        DatabaseReference parentNode = FirebaseDatabase.getInstance().getReference(path);
+        parentNode.setValue(value);
+    }
     public static void deleteData(String path)
     {
         DatabaseReference parentNode = FirebaseDatabase.getInstance().getReference(path);

@@ -16,13 +16,16 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import com.example.musicapp.Adapter.DialogPlaylistAdapter;
 import com.example.musicapp.Adapter.PlaylistAdapter;
+import com.example.musicapp.Model.FavoriteSongData;
 import com.example.musicapp.Model.Playlist;
 import com.example.musicapp.Model.PlaylistData;
 import com.example.musicapp.Model.PlaylistDetail;
 import com.example.musicapp.Model.PlaylistDetailData;
+import com.example.musicapp.Model.Song;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
 import com.example.musicapp.Service.StorageData;
@@ -69,6 +72,57 @@ public class PlaylistActivity extends AppCompatActivity {
                         intent.putExtra("ten_playlist", playlists.get(position).getTen());
                         intent.putExtra("soluong_baihat", listQuantitySong.get(position));
                         startActivity(intent);
+                    }
+                });
+
+                gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Playlist playlist = playlists.get(position);
+                        PopupMenu popupMenu = new PopupMenu(context, view);
+                        popupMenu.getMenuInflater().inflate(R.menu.popup_menu_2, popupMenu.getMenu());
+                        popupMenu.setOnMenuItemClickListener(item -> {
+                            switch (item.getItemId()) {
+                                case R.id.menu_open:
+                                    Intent intent = new Intent(context, PlaylistDetailActivity.class);
+                                    intent.putExtra("id_playlist", playlist.getId());
+                                    intent.putExtra("ten_playlist", playlist.getTen());
+                                    intent.putExtra("soluong_baihat", listQuantitySong.get(position));
+                                    startActivity(intent);
+                                    return true;
+                                case R.id.menu_rename:
+                                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                                    View mView = getLayoutInflater().inflate(R.layout.dialog_item_layout_changenameplaylist, null);
+
+                                    EditText editText_namePlaylist = mView.findViewById(R.id.editText_namePlaylist);
+                                    Button button_ok = mView.findViewById(R.id.button_ok);
+                                    
+                                    editText_namePlaylist.setText(playlist.getTen());
+
+                                    mBuilder.setView(mView);
+                                    AlertDialog dialog = mBuilder.create();
+                                    dialog.show();
+
+                                    button_ok.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Object value =  editText_namePlaylist.getText().toString();
+                                            String path = "Playlist/" + playlist.getId() + "/Ten";
+                                            FirebaseHelper.editData(path, value);
+                                            dialog.cancel();
+                                        }
+                                    });
+                                    return true;
+                                case R.id.menu_delete:
+                                    String path = "Playlist/" + playlist.getId();
+                                    FirebaseHelper.deleteData(path);
+                                    return true;
+                                default:
+                                    return false;
+                            }
+                        });
+                        popupMenu.show();
+                        return true;
                     }
                 });
 
