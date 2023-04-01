@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.musicapp.Adapter.FavoriteAdapter;
 import com.example.musicapp.Model.FavoriteSongData;
@@ -38,11 +43,11 @@ public class FavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite);
         init();
 
-        FirebaseHelper.getData(new ValueEventListener() {
+        FirebaseHelper.getDataChange(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Song> songs = FavoriteSongData.getListFavoriteSong(dataSnapshot, StorageData.id_user);
-                FavoriteAdapter adapter = new FavoriteAdapter(songs, context);
+                FavoriteAdapter adapter = new FavoriteAdapter(songs, dataSnapshot, context);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(adapter);
             }
@@ -100,4 +105,5 @@ public class FavoriteActivity extends AppCompatActivity {
         iB_setting = findViewById(R.id.iB_setting);
         iB_library = findViewById(R.id.iB_library);
     }
+
 }

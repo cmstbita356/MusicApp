@@ -51,13 +51,13 @@ public class PlaylistDetailActivity extends AppCompatActivity {
         textView_playlistName.setText(intent.getStringExtra("ten_playlist"));
         String textQuantity = String.valueOf(intent.getIntExtra("soluong_baihat", 0)) + " songs";
         textView_quantitySong.setText(textQuantity);
-        FirebaseHelper.getData(new ValueEventListener() {
+        FirebaseHelper.getDataChange(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 int id_playlist = intent.getIntExtra("id_Playlist", 0);
                 songs = PlaylistDetailData.getSongsByIdPlaylist(dataSnapshot, id_playlist);
-                PlaylistDetailAdapter adapter = new PlaylistDetailAdapter(songs, id_playlist, context);
+                PlaylistDetailAdapter adapter = new PlaylistDetailAdapter(songs, id_playlist, dataSnapshot, context);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(adapter);
             }
