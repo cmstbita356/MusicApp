@@ -96,7 +96,7 @@ public class PlaylistActivity extends AppCompatActivity {
 
                                     EditText editText_namePlaylist = mView.findViewById(R.id.editText_namePlaylist);
                                     Button button_ok = mView.findViewById(R.id.button_ok);
-                                    
+
                                     editText_namePlaylist.setText(playlist.getTen());
 
                                     mBuilder.setView(mView);
