@@ -3,8 +3,6 @@ package com.example.musicapp.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,17 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 
-import com.example.musicapp.Adapter.DialogPlaylistAdapter;
 import com.example.musicapp.Adapter.PlaylistAdapter;
-import com.example.musicapp.Model.FavoriteSongData;
 import com.example.musicapp.Model.Playlist;
 import com.example.musicapp.Model.PlaylistData;
-import com.example.musicapp.Model.PlaylistDetail;
 import com.example.musicapp.Model.PlaylistDetailData;
-import com.example.musicapp.Model.Song;
 import com.example.musicapp.R;
 import com.example.musicapp.Service.FirebaseHelper;
 import com.example.musicapp.Service.StorageData;
@@ -92,7 +85,7 @@ public class PlaylistActivity extends AppCompatActivity {
                                     return true;
                                 case R.id.menu_rename:
                                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-                                    View mView = getLayoutInflater().inflate(R.layout.dialog_item_layout_changenameplaylist, null);
+                                    View mView = getLayoutInflater().inflate(R.layout.dialog_layout_changenameplaylist, null);
 
                                     EditText editText_namePlaylist = mView.findViewById(R.id.editText_namePlaylist);
                                     Button button_ok = mView.findViewById(R.id.button_ok);
