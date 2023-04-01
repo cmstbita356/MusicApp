@@ -1,5 +1,4 @@
 package com.example.musicapp.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.musicapp.Adapter.HomeAdapter;
 import com.example.musicapp.Model.Song;
 import com.example.musicapp.Model.SongData;
@@ -39,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
 
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
+    ImageSlider imageSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 songList = SongData.getAllSong(dataSnapshot);
+                //SliderImage
+                SliderImage();
 
                 HomeAdapter adapter_Anh = new HomeAdapter(SongData.getSongByLanguage("Anh", dataSnapshot), context);
                 recyclerView_Anh.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -111,5 +116,38 @@ public class HomeActivity extends AppCompatActivity {
         iB_library = findViewById(R.id.iB_library);
         iB_setting = findViewById(R.id.iB_setting);
         miniLayout_Play = findViewById(R.id.miniLayout_Play);
+        imageSlider=findViewById(R.id.imageSlider);
+    }
+    public void SliderImage(){
+        ArrayList<SlideModel> slideModels=new ArrayList<>();
+        for(int i=0;i<songList.size();i++){
+            slideModels.add(new SlideModel(songList.get(i).getHinh(), ScaleTypes.FIT));
+        }
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+
+//        imageSlider.addOnLayoutChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                SlideModel slideModel = imageSlider.getSlideModelList().get(position);
+//                String imageUrl = slideModel.getImageUrl();
+//                Log.d("SliderImage URL", imageUrl);
+//
+//            }
+//
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {}
+//        });
+//        imageSlider.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, PlayActivity.class);
+//                intent.putExtra("id", getSongByHinh(imageSlider.,dataSnapshot).getId());
+//                intent.putExtra("id_playlist", "không");
+//                context.startActivity(intent);
+//            }
+//        });
     }
 }
