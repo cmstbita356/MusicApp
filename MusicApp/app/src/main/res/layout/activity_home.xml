@@ -10,7 +10,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:layout_margin="10dp"
         app:cardCornerRadius="50dp">
         <LinearLayout
@@ -28,47 +29,6 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/miniLayout_Play"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:background="#000000">
-        <TextView
-            android:id="@+id/txv_namesong"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Tên Bài Hát"
-            android:textColor="@color/secondary_color"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textSize="17sp"/>
-        <ImageButton
-            android:id="@+id/bt_like"
-            android:background="#000000"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_skip_previous"
-            android:scaleType="fitStart"/>
-        <ImageButton
-            android:id="@+id/bt_pause"
-            android:background="#000000"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_pause"/>
-        <ImageButton
-            android:id="@+id/bt_next"
-            android:background="#000000"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_skip_next"
-            android:scaleType="fitXY"/>
-
-
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -174,18 +134,60 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="@color/black">
+        <LinearLayout
+            android:id="@+id/miniLayout_Play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#000000">
+            <TextView
+                android:id="@+id/txv_namesong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="Tên Bài Hát"
+                android:textColor="@color/secondary_color"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="17sp"/>
+            <ImageButton
+                android:id="@+id/bt_like"
+                android:background="#000000"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_skip_previous"
+                android:scaleType="fitStart"/>
+            <ImageButton
+                android:id="@+id/bt_pause"
+                android:background="#000000"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_pause"/>
+            <ImageButton
+                android:id="@+id/bt_next"
+                android:background="#000000"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_skip_next"
+                android:scaleType="fitXY"/>
+
+
+        </LinearLayout>
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#444444"
             android:layout_gravity="bottom"
+            android:backgroundTint="#444444"
             app:fabCradleMargin="10dp"
-            app:fabCradleRoundedCornerRadius="50dp"
-            app:fabCradleVerticalOffset="4dp"
-            >
+            app:fabCradleRoundedCornerRadius="40dp"
+            app:fabCradleVerticalOffset="4dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -194,107 +196,119 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="7dp"
                     android:layout_weight="0.7"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <ImageButton
                         android:id="@+id/iB_home"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_home_selected"
                         android:backgroundTint="@color/footer_color"
-                        android:paddingTop="10dp"/>
+                        android:paddingTop="10dp"
+                        android:src="@drawable/ic_home_selected" />
+
                     <TextView
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Home"
-                        android:textColor="@color/secondary_color"
-                        android:gravity="center"/>
+                        android:textColor="@color/secondary_color" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="7dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <ImageButton
                         android:id="@+id/iB_library"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
 
-                        android:src="@drawable/ic_library"
                         android:backgroundTint="@color/footer_color"
-                        android:paddingTop="10dp"/>
+                        android:paddingTop="10dp"
+                        android:src="@drawable/ic_library" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Library"
-                        android:textColor="@color/main_text"
-                        android:gravity="center"/>
+                        android:textColor="@color/main_text" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="7dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <ImageButton
                         android:id="@+id/iB_search"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
 
-                        android:src="@drawable/ic_search"
                         android:backgroundTint="@color/footer_color"
-                        android:paddingTop="10dp"/>
+                        android:paddingTop="10dp"
+                        android:src="@drawable/ic_search" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Search"
-                        android:textColor="@color/main_text"
-                        android:gravity="center"/>
+                        android:textColor="@color/main_text" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="7dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <ImageButton
                         android:id="@+id/iB_setting"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
 
-                        android:src="@drawable/ic_setting"
                         android:backgroundTint="@color/footer_color"
-                        android:paddingTop="10dp"/>
+                        android:paddingTop="10dp"
+                        android:src="@drawable/ic_setting" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Setting"
-                        android:textColor="@color/main_text"
-                        android:gravity="center"/>
+                        android:textColor="@color/main_text" />
                 </LinearLayout>
-
 
 
             </LinearLayout>
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ff5e00"
-            android:elevation="3dp"
-            android:src="@drawable/ic_loop"
-            app:backgroundTint="#ff5e00"
-            app:layout_anchor="@id/app_bar">
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:elevation="6dp"-->
+<!--            android:src="@drawable/ic_loop"-->
+<!--            app:backgroundTint="@color/black"-->
+<!--            app:layout_anchor="@id/app_bar"-->
+<!--            android:layout_marginBottom="40dp"-->
+<!--            android:layout_marginTop="10dp">-->
 
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
