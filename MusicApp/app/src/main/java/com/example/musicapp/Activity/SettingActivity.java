@@ -1,7 +1,10 @@
 package com.example.musicapp.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,14 +15,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.musicapp.Adapter.FavoriteAdapter;
+import com.example.musicapp.Adapter.FeedBackAdapter;
+import com.example.musicapp.Adapter.HistorySearchAdapter;
+import com.example.musicapp.Model.FavoriteSongData;
+import com.example.musicapp.Model.FeedBack;
+import com.example.musicapp.Model.FeedBackData;
+import com.example.musicapp.Model.HistorySearch;
+import com.example.musicapp.Model.HistorySearchData;
+import com.example.musicapp.Model.Song;
+import com.example.musicapp.Model.UserData;
 import com.example.musicapp.R;
+import com.example.musicapp.Service.FirebaseHelper;
 import com.example.musicapp.Service.StorageData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class SettingActivity extends AppCompatActivity {
     ImageButton iB_home;
@@ -29,11 +54,34 @@ public class SettingActivity extends AppCompatActivity {
     SeekBar seekBar_volume;
     LinearLayout logOut;
     Context context = this;
+    Button addFeedback;
+
+    ArrayList<FeedBack> lisFB=new ArrayList<>();
+    RecyclerView recyclerVieww;
+    TextView countStar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         init();
+
+        FirebaseHelper.getDataChange(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lisFB=FeedBackData.getAllFeedBack(dataSnapshot);
+                countStar.setText(CountStar()+"/5 ");
+
+                ArrayList<FeedBack> feedBack = FeedBackData.getAllFeedBack(dataSnapshot);
+                FeedBackAdapter adapter = new FeedBackAdapter(feedBack, dataSnapshot, context);
+                recyclerVieww.setLayoutManager(new LinearLayoutManager(context));
+                recyclerVieww.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         //Khôi phục giá trị
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -106,6 +154,13 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
+        addFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FeedBackActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,5 +224,16 @@ public class SettingActivity extends AppCompatActivity {
         spinner_sleep = findViewById(R.id.spinner_sleep);
         seekBar_volume = findViewById(R.id.seekBar_volume);
         logOut = findViewById(R.id.logOut);
+        addFeedback=findViewById(R.id.addFeedback);
+        recyclerVieww=findViewById(R.id.recyclerVieww);
+        countStar=findViewById(R.id.countStar);
     }
+    private float CountStar(){
+        float count=0;
+        for(int i=0;i<lisFB.size();i++){
+            count+=lisFB.get(i).getStar_vote();
+        }
+       return Math.round(count/lisFB.size()) ;
+    }
+
 }

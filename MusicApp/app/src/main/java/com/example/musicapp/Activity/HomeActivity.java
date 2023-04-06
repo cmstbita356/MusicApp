@@ -40,10 +40,10 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView recyclerView_VietNam;
     RecyclerView recyclerView_Khac;
     LinearLayout miniLayout_Play;
+    ImageSlider imageSlider;
 
     ArrayList<Song> songList = new ArrayList<>();
     Context context = this;
-    ImageSlider imageSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                 songList = SongData.getAllSong(dataSnapshot);
                 //SliderImage
                 SliderImage();
+
 
                 HomeAdapter adapter_Anh = new HomeAdapter(SongData.getSongByLanguage("Anh", dataSnapshot), context);
                 recyclerView_Anh.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -111,6 +112,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void init()
     {
+        imageSlider=findViewById(R.id.imageSlider);
         iB_search = findViewById(R.id.iB_search);
         recyclerView_Anh = findViewById(R.id.recyclerView_Anh);
         recyclerView_VietNam = findViewById(R.id.recyclerView_VietNam);
@@ -118,7 +120,6 @@ public class HomeActivity extends AppCompatActivity {
         iB_library = findViewById(R.id.iB_library);
         iB_setting = findViewById(R.id.iB_setting);
         miniLayout_Play = findViewById(R.id.miniLayout_Play);
-        imageSlider=findViewById(R.id.imageSlider);
     }
     public void SliderImage(){
         ArrayList<SlideModel> slideModels=new ArrayList<>();
@@ -152,4 +153,5 @@ public class HomeActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
 }
