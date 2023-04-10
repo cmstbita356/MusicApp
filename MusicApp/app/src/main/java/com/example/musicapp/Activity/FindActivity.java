@@ -64,14 +64,17 @@ public class    FindActivity extends AppCompatActivity {
                 bt_find.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        HistorySearch his=new HistorySearch( StorageData.id_user,editText_find.getText().toString());
-                        Mdata.child("History_Search").push().setValue(his);
+                        if(HistorySearchData.check(dataSnapshot,StorageData.id_user,editText_find.getText().toString())==false){
+                            HistorySearch his=new HistorySearch( StorageData.id_user,editText_find.getText().toString());
+                            Mdata.child("History_Search").push().setValue(his);
+                        }
                         ArrayList<Song> listSong = SongData.getSongByName(editText_find.getText().toString(), dataSnapshot);
                         FindAdapter adapter = new FindAdapter(listSong, context);
                         recyclerView_find.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                         recyclerView_find.setAdapter(adapter);
                     }
                 });
+                //cái này khi ấn vào cái Lịch sử tìm kiếm thì nó dùng recyclerView luôn, có thể nhấn giữ chữ trong lịch sử tìm kiếm để tìm kiếm lại or xóa
                 HistorySreach.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -69,6 +69,7 @@ public class HistorySearchAdapter extends RecyclerView.Adapter<HistorySearchAdap
         }
 
     }
+    //Có thêm Case deleteAll
     private void showPopupMenu(View view, String his) {
         PopupMenu popupMenu = new PopupMenu(context, view);
         popupMenu.getMenuInflater().inflate(R.menu.popup_menu_search, popupMenu.getMenu());
@@ -79,6 +80,11 @@ public class HistorySearchAdapter extends RecyclerView.Adapter<HistorySearchAdap
                     FirebaseHelper.deleteData(path);
                     Intent intentA = new Intent(context, FindActivity.class);
                     context.startActivity(intentA);
+                    return true;
+                case R.id.menu_deleteAll:
+                    HistorySearchData.ClearAllHistory(dataSnapshot, StorageData.id_user);
+                    Intent intentB = new Intent(context, FindActivity.class);
+                    context.startActivity(intentB);
                     return true;
                 case R.id.menu_findSearch:
                     Intent intent = new Intent(context, FindActivity.class);

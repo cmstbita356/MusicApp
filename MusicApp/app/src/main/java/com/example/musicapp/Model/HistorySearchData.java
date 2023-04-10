@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot;
 import java.util.ArrayList;
 
 public class HistorySearchData {
+    //Get List History Search
     public static ArrayList<String> getListHistory(DataSnapshot dataSnapshot, int id)
     {
         ArrayList<String> ListHis = new ArrayList<>();
@@ -18,6 +19,19 @@ public class HistorySearchData {
         }
         return ListHis;
     }
+    //Check duplicate
+    public static boolean check(DataSnapshot dataSnapshot, int id, String search)
+    {
+        for (String hisSearch : getListHistory(dataSnapshot, id))
+        {
+            if(search == hisSearch)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    //Xóa hết tìm kiếm
     public static void ClearAllHistory(DataSnapshot dataSnapshot, int id){
         ArrayList<String> ListHis = new ArrayList<>();
         for (DataSnapshot snapshot : dataSnapshot.child("History_Search").getChildren()) {
@@ -28,7 +42,6 @@ public class HistorySearchData {
             }
         }
     }
-
 
     public static String getKeyHis(DataSnapshot dataSnapshot, int id, String search)
     {
