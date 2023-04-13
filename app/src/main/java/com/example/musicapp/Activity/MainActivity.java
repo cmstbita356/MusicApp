@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +44,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
+        // Khởi tạo đối tượng SharedPreferences
+        SharedPreferences sharedPreferences_LG = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        //Check login
+        checkLogin(sharedPreferences_LG);
 
         button_dangky.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +64,13 @@ public class MainActivity extends AppCompatActivity{
                     public void onClick(View v) {
                         String taikhoan = editText_taikhoan.getText().toString();
                         String matkhau = editText_matkhau.getText().toString();
+
+                        // Lưu trữ tên đăng nhập và mật khẩu vào SharedPreferences
+                        SharedPreferences.Editor editor = sharedPreferences_LG.edit();
+                        editor.putString("username", taikhoan);
+                        editor.putString("password", matkhau);
+                        editor.apply();
+
                         if (UserData.checkLogin(dataSnapshot, taikhoan, matkhau))
                         {
                             Intent intent = new Intent(context, HomeActivity.class);
@@ -88,5 +99,12 @@ public class MainActivity extends AppCompatActivity{
         editText_matkhau = findViewById(R.id.editText_matkhau);
         button_dangky = findViewById(R.id.button_dangky);
         textView_error = findViewById(R.id.textView_error);
+    }
+    private void checkLogin(SharedPreferences sharedPreferences_LG){
+        if(sharedPreferences_LG.getString("username", "")!=null){
+            editText_taikhoan.setText(sharedPreferences_LG.getString("username", ""));
+            editText_matkhau.setText(sharedPreferences_LG.getString("password", ""));
+            button_submit.callOnClick();
+        }
     }
 }

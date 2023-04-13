@@ -55,8 +55,6 @@ public class FeedBackActivity extends AppCompatActivity {
                     }
                 });
 
-
-
             }
 
             @Override

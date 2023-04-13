@@ -113,13 +113,11 @@ public class    FindActivity extends AppCompatActivity {
                     bt_find.callOnClick();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
 
         iB_home.setOnClickListener(new View.OnClickListener() {
             @Override

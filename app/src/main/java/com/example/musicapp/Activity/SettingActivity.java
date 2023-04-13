@@ -51,7 +51,6 @@ public class SettingActivity extends AppCompatActivity {
     ImageButton bt_previous;
     ImageButton bt_next;
 
-    Button addFeedback;
     RecyclerView recyclerVieww;
     TextView countStar;
     ArrayList<FeedBack> lisFB=new ArrayList<>();
@@ -63,8 +62,6 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         init();
-
-
         //Khôi phục giá trị
         SharedPreferences sharedPreferences = getSharedPreferences("SettingPrefs", Context.MODE_PRIVATE);
         int progress = sharedPreferences.getInt("volume", 50);
@@ -153,6 +150,11 @@ public class SettingActivity extends AppCompatActivity {
                 button_yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SharedPreferences sharedPreferences_LG = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences_LG.edit();
+                        editor.putString("username", null);
+                        editor.putString("password", null);
+                        editor.apply();
                         StorageData.mediaPlayer.reset();
                         Intent intent = new Intent(context, MainActivity.class);
                         startActivity(intent);
